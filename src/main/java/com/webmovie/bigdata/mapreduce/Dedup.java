@@ -23,7 +23,7 @@ public class Dedup {
 		protected void map(Object key, Text value, Context context)
 				throws IOException, InterruptedException {
 			line = value;
-			System.out.println("[map] value = " + line);
+			System.out.println("[map-input] (key,value)=(" + key + ", " + line + ")");
 			context.write(line, new Text(""));
 		}
 	}
@@ -32,10 +32,10 @@ public class Dedup {
 	public static class Reduce extends Reducer<Text, Text, Text, Text>{
 
 		@Override
-		protected void reduce(Text key, Iterable<Text> arg1,
+		protected void reduce(Text key, Iterable<Text> values,
 				Context context)
 				throws IOException, InterruptedException {
-			System.out.println("[reduce] key = " + key);
+			System.out.println("[reduce-input] (key,value)=(" + key + ", " + values + ")");
 			
 			context.write(key, new Text(""));
 		}
@@ -45,7 +45,7 @@ public class Dedup {
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		Configuration conf = new Configuration();
 		
-		String[] ioArgs = new String[]{"/user/beifeng/mapreduce/dedup_in", "/user/beifeng/mapreduce/dedup_out05"};
+		String[] ioArgs = new String[]{"/user/beifeng/mapreduce/dedup_in", "/user/beifeng/mapreduce/dedup_out08"};
 		String[] otherArgs = new GenericOptionsParser(conf, ioArgs).getRemainingArgs();
 		if(otherArgs.length != 2){
 			System.err.println("Usage data deduplication <in> <out>");
