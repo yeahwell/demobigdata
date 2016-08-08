@@ -62,10 +62,10 @@ public class FindFOFJobEntry implements Tool {
 
 		job.setNumReduceTasks(1);
 
-		FileInputFormat.addInputPath(job, new Path("/user/beifeng/mapreduce/findfof_in/"));
+		FileInputFormat.addInputPath(job, new Path("/user/beifeng/mapreduce/fof_in/"));
 
 		// 输出文件
-		Path outdir = new Path("/user/beifeng/mapreduce/findfof_out01/");
+		Path outdir = new Path("/user/beifeng/mapreduce/findfof_out/");
 
 		FileSystem fs = FileSystem.get(conf);
 		if (fs.exists(outdir)) {
