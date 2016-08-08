@@ -80,7 +80,7 @@ public class BestFOFJobEntry implements Tool {
 
 		job.setNumReduceTasks(3);
 
-		FileInputFormat.addInputPath(job, new Path("/user/beifeng/mapreduce/fof_in/"));
+		FileInputFormat.addInputPath(job, new Path("/user/beifeng/mapreduce/findfof_out/"));
 
 		// 输出文件
 		Path outdir = new Path("/user/beifeng/mapreduce/bestfof_out/");
