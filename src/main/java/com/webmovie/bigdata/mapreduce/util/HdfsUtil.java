@@ -1,4 +1,4 @@
-package com.webmovie.bigdata.mapreduce.wc;
+package com.webmovie.bigdata.mapreduce.util;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
@@ -21,5 +21,6 @@ public class HdfsUtil {
 			fs.close();
 		}
 	}
-
+	
+	
 }
