@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
@@ -17,7 +18,7 @@ import org.apache.hadoop.util.ToolRunner;
 
 import com.webmovie.bigdata.mapreduce.util.HdfsUtil;
 
-public class WordCountRunner implements Tool{
+public class WordCountRunner extends Configured implements Tool{
 	
 	public static class WordCountMapper extends Mapper<Object, Text, Text, LongWritable>{
 
@@ -92,27 +93,8 @@ public class WordCountRunner implements Tool{
 		
 	}
 
-
-	private Configuration conf;
-	
-	@Override
-	public void setConf(Configuration conf) {
-		this.conf = conf;
-		this.conf.set("fs.defaultFS", "hdfs://beifeng-hadoop-02:9000");
-	}
-
-	@Override
-	public Configuration getConf() {
-		return this.conf;
-	}
-
 	@Override
 	public int run(String[] args) throws Exception {
-		args = new String[]{
-				"hdfs://beifeng-hadoop-02:9000/user/beifeng/mapreduce/wc_in",
-				"hdfs://beifeng-hadoop-02:9000/user/beifeng/mapreduce/wc_out02"
-		};
-		
 		Configuration conf = this.getConf();
 		Job job = Job.getInstance(conf, "wordcount");
 		job.setJarByClass(this.getClass());
@@ -143,7 +125,12 @@ public class WordCountRunner implements Tool{
 	}
 	
 	public static void main(String[] args) throws Exception {
-		ToolRunner.run(new WordCountRunner(), args);
+		args = new String[]{
+				"hdfs://beifeng-hadoop-02:9000/user/beifeng/mapreduce/wc_in",
+				"hdfs://beifeng-hadoop-02:9000/user/beifeng/mapreduce/wc_out02"
+		};
+		Configuration conf = new Configuration();
+		ToolRunner.run(conf, new WordCountRunner(), args);
 	}
 
 }
