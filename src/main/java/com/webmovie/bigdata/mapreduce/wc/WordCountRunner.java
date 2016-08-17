@@ -52,6 +52,9 @@ public class WordCountRunner implements Tool{
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(LongWritable.class);
 		
+		//删除输出文件
+		HdfsUtil.deleteFile(args[1]);
+		
 		//2. 输出
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 		
