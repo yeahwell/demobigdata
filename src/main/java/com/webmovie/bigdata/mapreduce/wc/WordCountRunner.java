@@ -98,7 +98,7 @@ public class WordCountRunner implements Tool{
 	@Override
 	public void setConf(Configuration conf) {
 		this.conf = conf;
-		conf.set("fs.defaultFS", "hdfs://beifeng-hadoop-02:9000");
+		this.conf.set("fs.defaultFS", "hdfs://beifeng-hadoop-02:9000");
 	}
 
 	@Override
