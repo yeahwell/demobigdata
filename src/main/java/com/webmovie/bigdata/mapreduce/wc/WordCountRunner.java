@@ -115,6 +115,7 @@ public class WordCountRunner implements Tool{
 		
 		Configuration conf = this.getConf();
 		Job job = Job.getInstance(conf, "wordcount");
+		job.setJarByClass(this.getClass());
 
 		//1. 输入
 		FileInputFormat.addInputPath(job, new Path(args[0]));
