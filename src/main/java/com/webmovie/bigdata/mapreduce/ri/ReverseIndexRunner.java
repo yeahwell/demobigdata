@@ -15,6 +15,7 @@ public class ReverseIndexRunner {
 		Configuration conf = new Configuration();
 		conf.set("fs.defaultFS", "hdfs://beifeng-hadoop-02:9000");
 		Job job = Job.getInstance(conf, "reverse_index");
+		job.setJarByClass(ReverseIndexRunner.class);
 
 		String inputPath = "/user/beifeng/mapreduce/ri_in";
 		String outputPath = "/user/beifeng/mapreduce/ri_out01";
