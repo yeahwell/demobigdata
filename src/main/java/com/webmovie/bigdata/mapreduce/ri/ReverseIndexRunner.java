@@ -43,7 +43,7 @@ public class ReverseIndexRunner {
 		
 		int status = job.waitForCompletion(true) ? 0 : 1;
 		
-		System.out.println("执行结果");
+		System.out.println("执行结果" + status);
 	}
 
 }
