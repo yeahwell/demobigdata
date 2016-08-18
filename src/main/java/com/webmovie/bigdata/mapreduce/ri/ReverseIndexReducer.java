@@ -1,6 +1,7 @@
 package com.webmovie.bigdata.mapreduce.ri;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,9 @@ public class ReverseIndexReducer extends Reducer<Text, Text, Text, Text> {
 			sb = new StringBuffer();
 			String line = value.toString();
 			String[] strArray = sb.append(line).reverse().toString().split(":", 2);
+			System.out.println("strArray = " + Arrays.toString(strArray));
 			String path = sb.delete(0, sb.length() - 1).append(strArray[1]).reverse().toString();
+			System.out.println("path = " + path);
 			int count = Integer.valueOf(strArray[0]);
 			if(map.containsKey(path)){
 				map.put(path, map.get(path) + count);
@@ -35,6 +38,7 @@ public class ReverseIndexReducer extends Reducer<Text, Text, Text, Text> {
 			sb.append(entry.getKey()).append(":").append(entry.getValue()).append(";");
 		}
 		outputValue.set(sb.deleteCharAt(sb.length() - 1).toString());
+		context.write(key, outputValue);
 	}
 	
 }
