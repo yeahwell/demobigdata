@@ -60,7 +60,7 @@ public class IntPair implements WritableComparable<IntPair>{
 			return tmp;
 		}
 		//再按照second排序
-		tmp = Integer.compareUnsigned(this.second, o.second);
+		tmp = Integer.compare(this.second, o.second);
 		return 0;
 	}
 
