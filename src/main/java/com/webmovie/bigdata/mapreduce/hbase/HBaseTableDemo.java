@@ -157,10 +157,11 @@ public class HBaseTableDemo {
 	public static void main(String[] args) throws Exception {
 		// 本地选择: initLocalHbaseMapReducerJobConfig2&initLocalHbaseMapReducerJobConfig
 		// 集群选择: initLocalHbaseMapReducerJobConfig2&initFailureLocalHbaseMapReducerJobConfig
-		Job job = //initLocalHbaseMapReducerJobConfig3();
-				// initLocalHbaseMapReducerJobConfig2();
-				// initFailureLocalHbaseMapReducerJobConfig();
-				initLocalHbaseMapReducerJobConfig();
+		Job job = null;
+		job = initLocalHbaseMapReducerJobConfig3();
+		job = initLocalHbaseMapReducerJobConfig2();
+		job = initFailureLocalHbaseMapReducerJobConfig();
+		job = initLocalHbaseMapReducerJobConfig();
 		int l = job.waitForCompletion(true) ? 0 : 1;
 		System.out.println("执行:" + l);
 	}
