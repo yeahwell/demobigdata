@@ -77,7 +77,7 @@ public class DemoRunner {
 		conf.set("fs.defaultFS", "hdfs://beifeng-hadoop-02:9000");
 		
 		String inputPath = "/user/beifeng/mapreduce/intpair_in";
-		String outputPath = "/user/beifeng/mapreduce/intpair_out";
+		String outputPath = "/user/beifeng/mapreduce/intpair_out/";
 
 		Job job = Job.getInstance(conf, "intpair-job");
 		job.setJarByClass(DemoRunner.class);
