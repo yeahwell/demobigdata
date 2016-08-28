@@ -95,6 +95,8 @@ public class WordCountTopology {
 		conf.put("hbase.conf", hbaseOpts);
 		conf.setNumWorkers(2);
 		
+		conf.setMessageTimeoutSecs(30);
+		
 		LocalCluster localCluster = new LocalCluster();
 		localCluster.submitTopology("wordcountTopo", conf, builder.createTopology());
 	}
