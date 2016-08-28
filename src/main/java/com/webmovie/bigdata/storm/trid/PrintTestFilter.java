@@ -9,9 +9,18 @@ import storm.trident.tuple.TridentTuple;
 
 public class PrintTestFilter implements Filter {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private Integer partitionIndex;
+
 	@Override
 	public void prepare(Map conf, TridentOperationContext context) {
-
+		
+		partitionIndex = context.getPartitionIndex();
+		
 	}
 
 	@Override
@@ -22,6 +31,8 @@ public class PrintTestFilter implements Filter {
 	public boolean isKeep(TridentTuple tuple) {
 		List<Object> valueList = tuple.getValues();
 		StringBuilder sb = new StringBuilder();
+		sb.append("PrintTestFilter: ");
+//		sb.append("partitionIndex=" + partitionIndex + ",  ");
 		int i = 0;
 		for(Object value : valueList){
 			if(i == 0){
@@ -31,7 +42,7 @@ public class PrintTestFilter implements Filter {
 			}
 			i++;
 		}
-		System.out.println("PrintTestFilter: " + sb.toString());
+		System.out.println(sb.toString());
 		return true;
 	}
 
