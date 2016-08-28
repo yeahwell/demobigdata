@@ -1,6 +1,6 @@
 package com.webmovie.bigdata.kafka.demo01;
 
-public interface KafkaProperties {
+public interface KafkaPropertiesDemo01 {
 
 	final static String zkConnect = "beifeng-hadoop-02:2181";
 	final static String groupId = "group1";
