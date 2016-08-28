@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:mysql://beifeng-hadoop-02:3306/test
+    username: root
+    password: beifeng
+    driver-class: com.mysql.jdbc.Driver
