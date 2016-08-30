@@ -1,0 +1,42 @@
+
+一、地区销售额
+1. 需求分析
+按地区实时计算销售额，并进行3D柱状图实时展示结果，含周同比。
+图表的数据5s自动更新
+
+
+二、架构设计
+1. 方案一
+Kafka -> Servlet(Kafka consumer Storm Topology) -> Web(HighChart图表)
+缺点：
+（1）Storm Topology只能通过storm jar命令来调，不能通过其他方式调用。所以架构中在servlet里调是不可行的。
+（2）Storm处理和Servlet处理耦合在一起，其中一个重启可能影响另一个，需要解耦合。
+
+2. 方案二
+Kafka -> Storm(Spout即为Kafka consumer Bolt处理) -> Kafka -> Servlet(Kafka consumer) -> Web(HighChart图表)
+优点：
+（1）前后台作业分离，即Storm Topology 和 Servlet分离，重启互不影响；
+（2）采用Kafka作为前后台数据传输层，数据传输实时性高，毫秒级；
+缺点
+采用Kafka作为前后台数据传输层，Kafka的稳定性没DB高。
+Storm纯内存计算，一旦重启Topology则会丢失结果数据，启动后会从0开始计算。
+
+3. 方案三
+Kafka -> Storm(Spout即为Kafka consumer Bolt处理)  -> HBase -> Servlet(读HBase) -> Web(HighChart图表)
+优点：
+（1）前台、后台分离，重启维护互不影响；
+（2）Storm重启不会影响结果数据，不影响HighCharts图表展示；
+（3）Tomcat重启不会影响数据处理；
+（4）前台后台数据传输通过Hbase，Hbase稳定性远比MQ强。虽然读写Hbase没有MQ实时，但能满足需求，5s刷新。
+
+三、方案实现
+1. Spout融合Kafka Consumer及线程安全测试
+（1）创建topic
+bin/kafka-topics.sh --create --zookeeper beifeng-hadoop-02:2181 --replication-factor 1 --partitions 1 --topic track
+2）创建消费者
+OrderConsumer
+bin/kafka-console-consumer.sh --zookeeper beifeng-hadoop-02:2181 --topic track
+（3）创建生成者
+OrderProducer
+（4）先启动OrderConsumer，再启动OrderProducer
+

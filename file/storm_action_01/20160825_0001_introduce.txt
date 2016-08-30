@@ -1,0 +1,64 @@
+一、流计算前景
+电商营销调整决策
+告警系统
+推荐系统
+
+二、项目介绍
+1. Storm Trident
+事务: 运用IPartitionedTridentSpout
+DRPC: Web端通过DRPC获得结果数据
+topN: 按销售排行
+基于HBase存储的Trident state：支持Topo重启不丢数据，也可支持Web端读数据
+2. Kafka -> Storm -> HighCharts
+3. Cloudera Manager管理CDH5
+项目1：
+项目2：省份销售排行，Top 5列表，双Y轴图表
+项目3：UV实时走势图，点追加，月环比，今天UV
+
+三、课程大纲
+1、Storm应用前景和课程大纲介绍
+2、CDH5搭建之CM5安装部署
+3、CDH5搭建和CM界面化集群管理
+4、Hadoop、HBase、Zookeeper集群管理和角色分配
+5、Kafka基础知识和集群搭建
+6、Kafka基本操作和最优设置
+7、Kafka Java API 简单开发测试
+8、storm-kafka 详解和实战案例
+9、JS图表框架HighCharts介绍
+10、HBase 快速入门
+11、基于HBase的Dao基类和实现类开发一
+12、基于HBase的Dao基类和实现类开发二
+13、【项目1-地区销售额】需求分析和架构设计
+	项目1主要技术点：
+	后台开发架构设计
+	前台开发架构设计
+	前后端数据实时交互
+	HighCharts图表开发
+	图表秒级无刷新实时展示
+	3D柱图、条形图、柱子图展示效果
+14、【项目1-地区销售额】Spout融合Kafka Consumer及线程安全测试
+15、【项目1-地区销售额】Bolt业务逻辑处理一
+16、【项目1-地区销售额】优化Bolt支持重启及结果数据核查
+17、【项目1-地区销售额】HighCharts图表开发一及Web端架构设计
+18、【项目1-地区销售额】HTTP长链接实现实时推送
+19、【项目1-地区销售额】HighCharts图表开发二及jquery运用
+20、【项目1-地区销售额】Web端完善和细节优化
+21、【项目1-地区销售额】项目发布及总结
+22、【项目2-省份销售排行】项目需求分析和分区Trident Spout开发
+	项目2为完全Storm Trident开发项目，主要技术点：
+	采用双纵轴图表展示效果
+	Storm Trident开发 
+	采用Storm事务处理
+	基于Hbase的Trident State
+	DRPC分布式远程调用
+	TopN，前N排行
+23、【项目2-省份销售排行】Trident 代码开发一
+24、【项目2-省份销售排行】Trident 代码开发二
+25、【项目2-省份销售排行】基于HBase存储的State运用
+26、【项目2-省份销售排行】双纵轴HighCharts图表开发一
+27、【项目2-省份销售排行】双纵轴HighCharts图表开发二
+28、【项目2-省份销售排行】双纵轴HighCharts图表开发三
+29、【项目2-省份销售排行】前台和图表交互开发和Top N实现
+30、【项目2-省份销售排行】Top N展示优化和项目总结
+31-40讲为【项目3-网站User Views数】内容，该项目会继续增加难度，
+展示图形为仿股票走势图的UV数实时分时走势图。

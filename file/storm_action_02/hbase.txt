@@ -1,0 +1,4 @@
+
+create 'saleTotalAmtOfAddrAndHour', {NAME => 'cf', VERSIONS => 1000}
+
+bin/storm abc.jar com.webmovie.bigdata.storm.action02.OrderProcessTrident orderProcessTrident

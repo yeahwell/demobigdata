@@ -1,0 +1,52 @@
+
+-- 1. 查看命令组
+-- 1.1 查看所有命令
+help
+-- 1.2 查看hbase集群状态信息 
+help 'status'
+status
+	simple
+	summary
+	detailed
+
+-- 2. namespace命令
+create_namepspace
+alter_namespace
+describe_namespace
+drop_namespace	--只能删除空的namspace
+list_namespace
+list_namespace_tables
+
+create_namespace 'bigdater', {'comment' => 'bigdata test namespace'}
+
+-- 3. list命名
+显示hbase表名称，默认显示所有用户表
+help 'list'
+
+-- 4. 创建表
+create 'bigdater:test', 'f'
+list 'bigdater:.*'
+list_namespace_tables 'bigdater'
+
+-- 5. 删除表
+disable 'bigdater:test'
+drop 'bigdater:test'
+
+-- 6. 插入数据
+create 'users', 'f'
+put 'users', 'row1', 'f:id', '1'
+put 'users', 'row1', 'f', '2'
+put 'users', 'row1', 'f:age', '18'
+put 'users', 'row1', 'f:gender', 'm'
+
+-- 7. JRuby编程
+import java.util.Date
+d = Date.new()
+d.toString()
+
+t1 = get_table 'users'
+t1.put 'row2', 'f:id', '3'
+
+-- 8. get命令
+get 'users', 'row1'
+

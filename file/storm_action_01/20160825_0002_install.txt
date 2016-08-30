@@ -1,0 +1,37 @@
+
+一、下载
+cloudera-manager.repo
+cloudera-cdh5.repo
+http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.3.6/RPMS/x86_64/
+cloudera-manager-installer.bin
+cloudera-manager-daemons-5.3.6-1.cm536.p0.244.el6.x86_64.rpm
+cloudera-manager-agent-5.3.6-1.cm536.p0.244.el6.x86_64.rpm
+jdk-6u31-linux-amd64.rpm
+
+二、安装
+1. 安装daemons
+sudo yum install -y cloudera-manager-daemons-5.3.6-1.cm536.p0.244.el6.x86_64.rpm
+2. 安装agent
+sudo yum install -y cloudera-manager-agent-5.3.6-1.cm536.p0.244.el6.x86_64.rpm
+3. 安装jdk
+sudo yum install -y ./jdk-6u31-linux-amd64.rpm
+4. 安装manager
+chmod +x cloudera-manager-installer.bin
+sudo ./cloudera-manager-installer.bin
+安装成功后访问
+http://hostname:7180
+username: admin
+password: admin
+
+三、卸载CM
+1. 卸载CM Server
+卸载之前，在管理界面停止所有服务
+sudo /usr/share/cmf/uninstall-cloudera-manager.sh
+2. 卸载CM Agent和所有被管理组件
+停止CM agent服务
+sudo service cloudera-scm-agent hard stop
+卸载所有组件
+sudo yum remove ''
+清空文件及yum缓存
+sudo rm -R /usr/shar/cmf /var/lib/cloudera* /var/cache/yum/cloudera*
+sudo yum clean all
