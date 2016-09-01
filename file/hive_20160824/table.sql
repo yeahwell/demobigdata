@@ -37,6 +37,25 @@ tblproperties('hbase.table.name'='users');
 
 hdfs dfs -put data3.txt /user/hive/warehouse/hive_users
 
---5. hive表维护
+-- 5. hive表维护
 drop table hive_users;
 truncate table hive_users;
+-- 语法
+alter table table_name rename to new_table_name;
+alter table table_name add columns(new-cls type);
+alter table table_name replace columns(new-cls type);
+-- 示例
+create table test(id int, name string);
+alter table test rename to new_test;
+describe formatted new_test;
+alter table new_test add columns (age int , sex string);
+describe new_test;
+alter table new_test replace columns(id int, name string, age int ,sex string);
+
+-- 6. 导入数据
+-- schema on read
+-- 1）从linux系统上导入数据到hive表中
+-- 2）从hdfs上导入数据到hive表中
+-- 3）从已有hive表到导入数据到新的hive表中
+
+
