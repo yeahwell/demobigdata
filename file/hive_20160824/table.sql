@@ -58,4 +58,11 @@ alter table new_test replace columns(id int, name string, age int ,sex string);
 -- 2）从hdfs上导入数据到hive表中
 -- 3）从已有hive表到导入数据到新的hive表中
 
+-- 7. 自定义函数
+add jar /opt/jars/demobigdata-0.0.1-SNAPSHOT-jar-with-dependencies.jar;
+list jar;
+create temporary function hive_0901_temp AS 'com.webmovie.bigdata.hive.UDFLowerOrUpperCase';
+show functions 'hive_0901.*';
+create function lower_or_upper AS 'com.webmovie.bigdata.hive.UDFLowerOrUpperCase';
+show functions 'lower_or_upper';
 
